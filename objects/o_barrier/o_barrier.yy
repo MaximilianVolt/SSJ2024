@@ -1,9 +1,7 @@
 {
   "$GMObject":"",
   "%Name":"o_barrier",
-  "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":12,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-  ],
+  "eventList":[],
   "managed":true,
   "name":"o_barrier",
   "overriddenProperties":[],
@@ -11,7 +9,10 @@
     "name":"Colliders",
     "path":"folders/Oggetti/World/Colliders.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"o_autocollect",
+    "path":"objects/o_autocollect/o_autocollect.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

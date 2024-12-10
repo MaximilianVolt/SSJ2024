@@ -12,7 +12,10 @@
     "name":"Managers",
     "path":"folders/Oggetti/Managers.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"o_autocollect",
+    "path":"objects/o_autocollect/o_autocollect.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
