@@ -9,7 +9,10 @@
     "name":"Special",
     "path":"folders/Oggetti/World/Special.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"o_interactable",
+    "path":"objects/o_interactable/o_interactable.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

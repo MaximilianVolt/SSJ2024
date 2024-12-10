@@ -1,18 +1,17 @@
 {
   "$GMObject":"",
-  "%Name":"o_fireplace",
-  "eventList":[],
+  "%Name":"o_autocollect",
+  "eventList":[
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":12,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+  ],
   "managed":true,
-  "name":"o_fireplace",
+  "name":"o_autocollect",
   "overriddenProperties":[],
   "parent":{
-    "name":"Special",
-    "path":"folders/Oggetti/World/Special.yy",
+    "name":"Managers",
+    "path":"folders/Oggetti/Managers.yy",
   },
-  "parentObjectId":{
-    "name":"o_interactable",
-    "path":"objects/o_interactable/o_interactable.yy",
-  },
+  "parentObjectId":null,
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

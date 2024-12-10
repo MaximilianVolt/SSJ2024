@@ -1,6 +1,7 @@
 var player_data = GAME.data /* ... */;
 
 inputs = o_controller.inputs;
+motion = {};
 
 
 
@@ -39,7 +40,7 @@ state_walk = function()
 {
 	state_string = nameof(state_walk);
 
-	var motion = player_get_movement_info(inputs);
+	motion = player_get_movement_info(inputs);
 
 	if (!motion.magnitude)
 		return state_idle();

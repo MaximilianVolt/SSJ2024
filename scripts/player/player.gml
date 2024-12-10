@@ -1,3 +1,5 @@
+#macro PLAYER_INTERACTION_RANGE 16
+
 /**
  * 
  */
@@ -49,9 +51,14 @@ function player_collide(direction, magnitude, entity, any = false)
  * 
  */
 
-function player_can_interact(key)
+function player_can_interact(item)
 {
-	return true;
+	var dist = distance_to_point(item.x, item.y)
+		, dir = point_direction(x, y, item.x, item.y)
+	;
+
+	return dist < PLAYER_INTERACTION_RANGE
+		&& dir >= motion.direction - 45 && dir <= motion.direction + 45;
 }
 
 
