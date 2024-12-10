@@ -1,14 +1,14 @@
 {
   "$GMTileSet":"v1",
-  "%Name":"ts_forest",
+  "%Name":"ts_forest_2",
   "autoTileSets":[],
   "macroPageTiles":{
     "SerialiseHeight":0,
     "SerialiseWidth":0,
     "TileSerialiseData":[],
   },
-  "name":"ts_forest",
-  "out_columns":8,
+  "name":"ts_forest_2",
+  "out_columns":18,
   "out_tilehborder":2,
   "out_tilevborder":2,
   "parent":{
@@ -18,8 +18,8 @@
   "resourceType":"GMTileSet",
   "resourceVersion":"2.0",
   "spriteId":{
-    "name":"s_ts_forest",
-    "path":"sprites/s_ts_forest/s_ts_forest.yy",
+    "name":"s_ts_forest_2",
+    "path":"sprites/s_ts_forest_2/s_ts_forest_2.yy",
   },
   "spriteNoExport":false,
   "textureGroupId":{
@@ -34,5 +34,5 @@
   "tileWidth":25,
   "tilexoff":0,
   "tileyoff":0,
-  "tile_count":60,
+  "tile_count":310,
 }

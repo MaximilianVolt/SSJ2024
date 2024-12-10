@@ -1,9 +1,9 @@
 {
   "$GMObject":"",
-  "%Name":"o_barrier",
+  "%Name":"o_teleporter",
   "eventList":[],
   "managed":true,
-  "name":"o_barrier",
+  "name":"o_teleporter",
   "overriddenProperties":[],
   "parent":{
     "name":"Colliders",
@@ -27,10 +27,7 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"s_barrier",
-    "path":"sprites/s_barrier/s_barrier.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":null,
   "visible":true,
 }

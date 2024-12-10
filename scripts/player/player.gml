@@ -30,7 +30,7 @@ function player_get_movement_info(inputs)
  * @returns 
  */
 
-function player_collide(direction, magnitude, entity)
+function player_collide(direction, magnitude, entity, any = false)
 {
   var xspd = lengthdir_x(magnitude, direction);
   var yspd = lengthdir_y(magnitude, direction);

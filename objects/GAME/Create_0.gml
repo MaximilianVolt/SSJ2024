@@ -5,7 +5,7 @@ data = {
 		game: {
 		},
 		ui: {
-			font: font_add_sprite(s_siderus_font, 32, true, 1)
+			font: font_add_sprite(s_font_siderus, 32, true, 1)
 		}
 	},
 };
