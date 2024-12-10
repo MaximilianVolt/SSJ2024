@@ -1,0 +1,1 @@
+inputs = o_controller.inputs;

@@ -1,0 +1,1 @@
+draw_text(x, y, o_player.state_string);

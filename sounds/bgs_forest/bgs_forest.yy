@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"bgs_forest",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":0,
+  "conversionMode":0,
+  "duration":34.054058,
+  "name":"bgs_forest",
+  "parent":{
+    "name":"BGS",
+    "path":"folders/Suoni/BGS.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"bgs_forest.ogg",
+  "type":0,
+  "volume":1.0,
+}
