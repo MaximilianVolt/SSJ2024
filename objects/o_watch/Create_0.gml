@@ -3,6 +3,8 @@ yy = view_get_hport(view_camera);
 
 x = -xx / 2;
 y = yy;
+image_alpha = -2;
+target_image_alpha = 1;
 
 target_x = xx / 2;
 target_y = yy / 2 + 80;
@@ -35,6 +37,7 @@ animation = function(timesource) {
 	x += math_ease_out_bounce(time) * (target_x - x);
 	y += math_ease_out_bounce(time) * (target_y - y);
 	rot += math_ease_out_bounce(time) * (target_rot - rot);
+	image_alpha = smoothen(image_alpha, target_image_alpha);
 }
 
 timesource = animation_in_timesource;

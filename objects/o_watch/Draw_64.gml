@@ -11,7 +11,7 @@ draw_sprite_ext(
 	scale,
 	rot,
 	image_blend,
-	image_alpha - .1
+	image_alpha
 );
 
 draw_sprite_ext(
@@ -23,7 +23,7 @@ draw_sprite_ext(
 	scale,
 	rot,
 	image_blend,
-	image_alpha - .1
+	image_alpha
 );
 
 draw_sprite_ext(

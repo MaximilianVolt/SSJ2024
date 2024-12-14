@@ -10,6 +10,7 @@ if (
 	target_x = -xx / 2;
 	target_y = -yy / 3;
 	target_rot = 90;
+	target_image_alpha = .1;
 	time_source_start(timesource);
 }
 
