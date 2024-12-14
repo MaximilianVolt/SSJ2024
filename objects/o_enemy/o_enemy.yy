@@ -1,7 +1,9 @@
 {
   "$GMObject":"",
   "%Name":"o_enemy",
-  "eventList":[],
+  "eventList":[
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+  ],
   "managed":true,
   "name":"o_enemy",
   "overriddenProperties":[],
@@ -10,8 +12,8 @@
     "path":"folders/Oggetti/World/Entities.yy",
   },
   "parentObjectId":{
-    "name":"o_autocollect",
-    "path":"objects/o_autocollect/o_autocollect.yy",
+    "name":"o_depth",
+    "path":"objects/o_depth/o_depth.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,

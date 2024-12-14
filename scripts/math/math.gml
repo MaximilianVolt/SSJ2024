@@ -1,5 +1,63 @@
 /// Often used
 
+
+
+/**
+ * Checks if a value is inside a range.
+ * @param {Real} value - The value to check. 
+ * @param {Real} min_value - The minimum value of the range. 
+ * @param {Real} max_value - The maximum value of the range. 
+ */
+
+function in_range(value, min_value, max_value)
+{
+  return (value >= min_value) & (value <= max_value);
+}
+
+
+
+/**
+ * Checks if a value is strictly inside a range.
+ * @param {Real} value - The value to check. 
+ * @param {Real} min_value - The minimum value of the range. 
+ * @param {Real} max_value - The maximum value of the range. 
+ */
+
+function in_range_strict(value, min_value, max_value)
+{
+  return (value > min_value) & (value < max_value);
+}
+
+
+
+/**
+ * Checks if a value is inside a range of a certain amplitude.
+ * @param {Real} value - The value to check. 
+ * @param {Real} target - The value to compare. 
+ * @param {Real} range - The range difference to consider. 
+ */
+
+function in_range_difference(value, target, range)
+{
+  return (value >= target - range) & (value <= target + range);
+}
+
+
+
+/**
+ * Checks if a value is strictly inside a range of a certain amplitude.
+ * @param {Real} value - The value to check. 
+ * @param {Real} target - The value to compare. 
+ * @param {Real} range - The range difference to consider. 
+ */
+
+function in_range_difference_strict(value, target, range)
+{
+  return (value > target - range) & (value < target + range);
+}
+
+
+
 /**
  * Gradually makes a value approach to another.
  * @param {Real} value  - The starting value.
@@ -17,8 +75,9 @@ function smoothen(value, target, smoothness = 10, treshold = math_get_epsilon())
   var diff = target - value;
 
   return (abs(diff) > treshold)
-    ? diff / smoothness + value
-    : target;
+    ? value + diff / smoothness
+    : target
+	;
 }
 
 
@@ -265,7 +324,7 @@ function math_ease_out_cubic(x)
 
 function math_ease_in_out_cubic(x)
 {
-  return x ? 1 - Math.pow(-2 * x + 2, 3) / 2 : 4 * x * x * x;
+  return x ? 1 - power(-2 * x + 2, 3) / 2 : 4 * x * x * x;
 }
 
 
@@ -378,7 +437,8 @@ function math_ease_in_out_exponential(x)
         ? power(2, 20 * x - 10) / 2
         : (2 - power(2, -20 * x + 10)) / 2
       )
-    );
+    )
+	;
 }
 
 
@@ -434,7 +494,8 @@ function math_ease_in_out_circular(x)
 {
   return x
     ? (sqrt(1 - power(-2 * x + 2, 2)) + 1) / 2
-    : (1 - sqrt(1 - pow(2 * x, 2))) / 2;
+    : (1 - sqrt(1 - power(2 * x, 2))) / 2
+	;
 }
 
 
@@ -499,7 +560,8 @@ function math_ease_in_out_backwards(x)
   
   return x
     ? (power(2 * x - 2, 2) * ((c2 + 1) * (x * 2 - 2) + c2) + 2) / 2
-    : (power(2 * x, 2) * ((c2 + 1) * 2 * x - c2)) / 2;
+    : (power(2 * x, 2) * ((c2 + 1) * 2 * x - c2)) / 2
+	;
 }
 
 
@@ -524,7 +586,8 @@ function math_ease_in_elastic(x)
     : (x == 1
       ? 1
       : -power(2, 10 * x - 10) * sin((x * 10 - 10.75) * c4)
-    );
+    )
+	;
 }
 
 
@@ -549,7 +612,8 @@ function math_ease_out_elastic(x)
     : (x == 1
       ? 1
       : power(2, -10 * x) * sin((x * 10 - 0.75) * c4) + 1
-    );
+    )
+	;
 }
 
 
@@ -575,9 +639,10 @@ function math_ease_in_out_elastic(x)
       ? 1
       : (x
         ? power(2, -20 * x + 10) * sin((20 * x - 11.125) * c5) / 2 + 1
-        : -pow(2, 20 * x - 10) * Math.sin((20 * x - 11.125) * c5) / 2
+        : -power(2, 20 * x - 10) * sin((20 * x - 11.125) * c5) / 2
       )
-    );
+    )
+	;
 }
 
 
@@ -626,7 +691,8 @@ function math_ease_out_bounce(x)
         ? n1 * power(x - 2.25 / d1, 2) + 0.9375
         : n1 * power(x - 2.625 / d1, 2) + 0.984375
       )
-    );
+    )
+	;
 }
 
 
@@ -646,5 +712,6 @@ function math_ease_in_out_bounce(x)
 {
   return x
     ? (1 + math_ease_out_bounce(2 * x - 1)) / 2
-    : (1 - math_ease_out_bounce(1 - 2 * x)) / 2;
+    : (1 - math_ease_out_bounce(1 - 2 * x)) / 2
+	;
 }

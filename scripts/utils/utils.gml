@@ -41,7 +41,7 @@ function game_get_inputs(controls = GAME.controls)
  * Checks if an action is performed.
  */
 
-function game_action_check(inputs, flag)
+function game_action(inputs, flag)
 {
   return inputs >> flag & 1;
 }

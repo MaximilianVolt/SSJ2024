@@ -4,6 +4,8 @@ target_y = y;
 ww = view_get_wport(view_camera);
 wh = view_get_hport(view_camera);
 
+
+
 w = ww / scale;
 h = wh / scale;
 

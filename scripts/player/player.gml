@@ -1,15 +1,32 @@
 #macro PLAYER_INTERACTION_RANGE 16
 
+global.time = 0;
+global.mhp = 3600 * 4;
+global.hp = global.mhp + 1000;
+global.time_max = 3600 * 10;
+
+global.time_timesource = time_source_create(
+	time_source_global,
+	1,
+	time_source_units_seconds,
+	function() {
+		time_source_start(global.time_timesource);
+		global.time++;
+	}
+);
+
+
+
 /**
  * 
  */
 
-function player_get_movement_info(inputs)
+function player_get_motion(inputs)
 {
-  var key_up = game_action_check(inputs, INPUT_FLAGS.KEY_UP)
-    , key_down = game_action_check(inputs, INPUT_FLAGS.KEY_DOWN)
-    , key_left = game_action_check(inputs, INPUT_FLAGS.KEY_LEFT)
-    , key_right = game_action_check(inputs, INPUT_FLAGS.KEY_RIGHT)
+  var key_up = game_action(inputs, INPUT_FLAGS.KEY_UP)
+    , key_down = game_action(inputs, INPUT_FLAGS.KEY_DOWN)
+    , key_left = game_action(inputs, INPUT_FLAGS.KEY_LEFT)
+    , key_right = game_action(inputs, INPUT_FLAGS.KEY_RIGHT)
   ;
 
   var dir_x = key_right - key_left
@@ -25,17 +42,13 @@ function player_get_movement_info(inputs)
 
 
 /**
- * 
- * @param direction 
- * @param magnitude 
- * @param entity 
+ * @param {Constant.GMObject} entity 
+ * @param {Bool} [any]
  * @returns 
  */
 
-function player_collide(direction, magnitude, entity, any = false)
+function player_collide(entity, xspd, yspd, any = true)
 {
-  var xspd = lengthdir_x(magnitude, direction);
-  var yspd = lengthdir_y(magnitude, direction);
 	var coll_h = move_and_collide(xspd, 0, entity, round(abs(xspd)));
 	var coll_v = move_and_collide(0, yspd, entity, round(abs(yspd)));
 
@@ -51,19 +64,16 @@ function player_collide(direction, magnitude, entity, any = false)
  * 
  */
 
-function player_can_interact(item)
+function player_can_interact(item, distance = PLAYER_INTERACTION_RANGE, range = 45)
 {
-	var dist = distance_to_point(item.x, item.y)
-		, dir = point_direction(x, y, item.x, item.y)
+  if (!item)
+    return false;
+
+  var dir = point_direction(x, y, item.x, item.y)
+	  , dist = distance_to_point(item.x, item.y)
 	;
 
-	return dist < PLAYER_INTERACTION_RANGE
-		&& dir >= motion.direction - 45 && dir <= motion.direction + 45;
+	return in_range_difference(motion.direction, dir, range)
+    && dist <= distance
+	;
 }
-
-
-
-
-
-
-

@@ -30,7 +30,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"s_teleporter",
+    "path":"sprites/s_teleporter/s_teleporter.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }

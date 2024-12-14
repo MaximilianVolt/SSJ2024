@@ -1,0 +1,1 @@
+draw_sprite(sprite_index, has_snow, x, y);

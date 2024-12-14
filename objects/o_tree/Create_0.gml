@@ -1,0 +1,1 @@
+has_snow = irandom(1);
