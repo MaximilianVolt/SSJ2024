@@ -141,8 +141,8 @@
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
-    {"roomId":{"name":"rm_intro_2","path":"rooms/rm_intro_2/rm_intro_2.yy",},},
     {"roomId":{"name":"rm_intro_1","path":"rooms/rm_intro_1/rm_intro_1.yy",},},
+    {"roomId":{"name":"rm_intro_2","path":"rooms/rm_intro_2/rm_intro_2.yy",},},
     {"roomId":{"name":"rm_forest","path":"rooms/rm_forest/rm_forest.yy",},},
     {"roomId":{"name":"rm_house","path":"rooms/rm_house/rm_house.yy",},},
     {"roomId":{"name":"rm_woodshed","path":"rooms/rm_woodshed/rm_woodshed.yy",},},
