@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"bgs_wind_indoor",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":0,
+  "conversionMode":0,
+  "duration":10.279854,
+  "name":"bgs_wind_indoor",
+  "parent":{
+    "name":"BGS",
+    "path":"folders/Suoni/BGS.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"bgs_wind_indoor.ogg",
+  "type":0,
+  "volume":1.0,
+}

@@ -50,8 +50,8 @@ function circular_bar_create(x, y, radius, width = radius, start_angle = 90, end
  * @param {Real} y - The bar's y position.
  * @param {Real} radius - The bar's radius.
  * @param {Real} [width] - The bar's width.
- * @param {Real} [center_angle] - The bar's middle angle, at 50% of the value.
- * @param {Real} [amplitude] - The bar's amplitude.
+ * @param {Real} [wheel_rotation_center] - The bar's middle angle, at 50% of the value.
+ * @param {Real} [wheel_range_amplitudeitude] - The bar's wheel_range_amplitudeitude.
  * @param {Real} [value] - The value represented by the bar (0 <= x <= 1).
  * @param {Real} [precision] - The number of sectors to draw the bar.
  * @param {Constant.Color | Array<Constant.Color>} [colors] - The colors from 0% to 100% of the value.
@@ -64,10 +64,10 @@ function circular_bar_create(x, y, radius, width = radius, start_angle = 90, end
  * @returns {Struct.Circular_bar}
 */
 
-function circular_bar_create_from_center(x, y, radius, width = radius, center_angle = 270, amplitude = 360, value = 1, precision = CIRCULAR_BAR_PRECISION_PRESETS.MEDIUM, colors = [c_white, c_white], alphas = [1, 1], edge_type_start = 0, edge_type_final = 0, divisors = [], edges = [0], activation_override = true)
+function circular_bar_create_from_center(x, y, radius, width = radius, wheel_rotation_center = 270, wheel_range_amplitudeitude = 360, value = 1, precision = CIRCULAR_BAR_PRECISION_PRESETS.MEDIUM, colors = [c_white, c_white], alphas = [1, 1], edge_type_start = 0, edge_type_final = 0, divisors = [], edges = [0], activation_override = true)
 {
-	var half_amplitude = amplitude / 2;
-	return new Circular_bar(x, y, radius, width, center_angle - half_amplitude, center_angle + half_amplitude, value, precision, colors, alphas, edge_type_start, edge_type_final, divisors, edges, activation_override);
+	var half_wheel_range_amplitudeitude = wheel_range_amplitudeitude / 2;
+	return new Circular_bar(x, y, radius, width, wheel_rotation_center - half_wheel_range_amplitudeitude, wheel_rotation_center + half_wheel_range_amplitudeitude, value, precision, colors, alphas, edge_type_start, edge_type_final, divisors, edges, activation_override);
 }
 
 
@@ -92,13 +92,13 @@ function circular_bar_create_border_bar(target_bar, border_width, colors = targe
 /**
  * Creates a bar's divisor.
  * @param {Real} position - The angle of the divisor's bisector.
- * @param {Real} amplitude - The amplitude of the divisor.
+ * @param {Real} wheel_range_amplitudeitude - The wheel_range_amplitudeitude of the divisor.
  * @returns {Struct}
 */
 
-function circular_bar_create_divisor(position, amplitude)
+function circular_bar_create_divisor(position, wheel_range_amplitudeitude)
 {
-	return Circular_bar.__create_divisor(position, amplitude);
+	return Circular_bar.__create_divisor(position, wheel_range_amplitudeitude);
 }
 
 
@@ -775,15 +775,15 @@ function circular_bar_add_divisors(bar, divisors)
  * Automatically adds centered divisors to the bar's arc.
  * @param {Struct.Circular_bar} bar - The bar to edit.
  * @param {Real} divisor_count - The number of divisors to set.
- * @param {Real | Array<Real>} divisor_amplitudes - The angles (in degrees) of the divisors, following the bar's progression.
+ * @param {Real | Array<Real>} divisor_wheel_range_amplitudeitudes - The angles (in degrees) of the divisors, following the bar's progression.
  * @param {Real | Array<Real>} divisor_edges - The edges to apply to the divisors, following the bar's progression.
 */
 
-function circular_bar_generate_divisors(bar, divisor_count, divisor_amplitudes, divisor_edges)
+function circular_bar_generate_divisors(bar, divisor_count, divisor_wheel_range_amplitudeitudes, divisor_edges)
 {
-	divisor_amplitudes = is_array(divisor_amplitudes) ? divisor_amplitudes : [divisor_amplitudes];
+	divisor_wheel_range_amplitudeitudes = is_array(divisor_wheel_range_amplitudeitudes) ? divisor_wheel_range_amplitudeitudes : [divisor_wheel_range_amplitudeitudes];
 	divisor_edges = is_array(divisor_edges) ? divisor_edges : [divisor_edges];
-	bar.__auto_generate_divisors(divisor_count, divisor_amplitudes, divisor_edges);
+	bar.__auto_generate_divisors(divisor_count, divisor_wheel_range_amplitudeitudes, divisor_edges);
 }
 
 
@@ -1315,12 +1315,12 @@ function Circular_bar(x, y, radius, width, start_angle, end_angle, value, precis
 		var angle_diff = end_angle - start_angle;
 		var rotation_increment = sign(angle_diff);
 		var angle = angle_diff * value + start_angle;
-		var sector_amplitude = abs(angle_diff) / precision;
+		var sector_wheel_range_amplitudeitude = abs(angle_diff) / precision;
 		var sector_count = __get_sector(value) - (value < 1);
-		var outer_angle = (180 - sector_amplitude) / 2;
-		var anchored_angle = start_angle + sector_amplitude * rotation_increment * sector_count;
-		// var snap_dir_angle = anchored_angle + sector_amplitude / 2 * sign(angle_diff);
-		var sector_angle_diff = abs(angle - anchored_angle) % sector_amplitude;
+		var outer_angle = (180 - sector_wheel_range_amplitudeitude) / 2;
+		var anchored_angle = start_angle + sector_wheel_range_amplitudeitude * rotation_increment * sector_count;
+		// var snap_dir_angle = anchored_angle + sector_wheel_range_amplitudeitude / 2 * sign(angle_diff);
+		var sector_angle_diff = abs(angle - anchored_angle) % sector_wheel_range_amplitudeitude;
 		var inner_angle = 180 - outer_angle - sector_angle_diff;
 
 		return radius * dsin(outer_angle) / dsin(inner_angle);
@@ -1360,13 +1360,13 @@ function Circular_bar(x, y, radius, width, start_angle, end_angle, value, precis
 	#region Divisors management
 	/**
 	 * @param {Real} divisor_count
-	 * @param {Array<Real>} divisor_amplitudes
+	 * @param {Array<Real>} divisor_wheel_range_amplitudeitudes
 	 * @param {Array<Real>} divisor_edges
 	*/
 
-	static __auto_generate_divisors = function(divisor_count, divisor_amplitudes, divisor_edges)
+	static __auto_generate_divisors = function(divisor_count, divisor_wheel_range_amplitudeitudes, divisor_edges)
 	{
-		var amplitudes_count = array_length(divisor_amplitudes);
+		var wheel_range_amplitudeitudes_count = array_length(divisor_wheel_range_amplitudeitudes);
 		var angle_diff = end_angle - start_angle;
 		var start_index = (angle_diff % 360 != 0);
 		divisor_count += start_index;
@@ -1376,8 +1376,8 @@ function Circular_bar(x, y, radius, width, start_angle, end_angle, value, precis
 		for (var i = start_index; i < divisor_count; i++)
 		{
 			var position = angle_diff * i / divisor_count + start_angle;
-			var amplitude = divisor_amplitudes[@ (i - start_index) % amplitudes_count];
-			array_push(divisors, __create_divisor(position, amplitude));
+			var wheel_range_amplitudeitude = divisor_wheel_range_amplitudeitudes[@ (i - start_index) % wheel_range_amplitudeitudes_count];
+			array_push(divisors, __create_divisor(position, wheel_range_amplitudeitude));
 		}
 
 		__update(true);
@@ -1387,20 +1387,20 @@ function Circular_bar(x, y, radius, width, start_angle, end_angle, value, precis
 
 	/**
 	 * @param {Real} position
-	 * @param {Real} amplitude
+	 * @param {Real} wheel_range_amplitudeitude
 	 * @returns {Struct}
 	*/
 
-	static __create_divisor = function(position, amplitude)
+	static __create_divisor = function(position, wheel_range_amplitudeitude)
 	{
-		var half_amplitude = amplitude / 2;
+		var half_wheel_range_amplitudeitude = wheel_range_amplitudeitude / 2;
 
 		return {
 			position,
-			amplitude,
+			wheel_range_amplitudeitude,
 			edge_angles: [
-				position - half_amplitude,
-				position + half_amplitude
+				position - half_wheel_range_amplitudeitude,
+				position + half_wheel_range_amplitudeitude
 			]
 		};
 	}
@@ -1441,7 +1441,7 @@ function Circular_bar(x, y, radius, width, start_angle, end_angle, value, precis
 		var len = radius * 1.5;
 		var position = divisor.position;
 		var angles = divisor.edge_angles;
-		var variation = (divisor.amplitude >= 180) * 90;
+		var variation = (divisor.wheel_range_amplitudeitude >= 180) * 90;
 
 		var t1x1 = center + lengthdir_x(len, angles[@ 0]);
 		var t1y1 = center + lengthdir_y(len, angles[@ 0]);

@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"bgs_snowstorm",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":0,
+  "conversionMode":0,
+  "duration":43.13971,
+  "name":"bgs_snowstorm",
+  "parent":{
+    "name":"BGS",
+    "path":"folders/Suoni/BGS.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"bgs_snowstorm.ogg",
+  "type":0,
+  "volume":1.0,
+}

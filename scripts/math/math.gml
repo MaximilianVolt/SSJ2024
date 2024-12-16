@@ -31,7 +31,7 @@ function in_range_strict(value, min_value, max_value)
 
 
 /**
- * Checks if a value is inside a range of a certain amplitude.
+ * Checks if a value is inside a range of a certain wheel_range_amplitudeitude.
  * @param {Real} value - The value to check. 
  * @param {Real} target - The value to compare. 
  * @param {Real} range - The range difference to consider. 
@@ -45,7 +45,7 @@ function in_range_difference(value, target, range)
 
 
 /**
- * Checks if a value is strictly inside a range of a certain amplitude.
+ * Checks if a value is strictly inside a range of a certain wheel_range_amplitudeitude.
  * @param {Real} value - The value to check. 
  * @param {Real} target - The value to compare. 
  * @param {Real} range - The range difference to consider. 
@@ -72,10 +72,10 @@ function in_range_difference_strict(value, target, range)
 
 function smoothen(value, target, smoothness = 10, treshold = math_get_epsilon())
 {
-  var diff = target - value;
+  var distance_difference = target - value;
 
-  return (abs(diff) > treshold)
-    ? value + diff / smoothness
+  return (abs(distance_difference) > treshold)
+    ? value + distance_difference / smoothness
     : target
 	;
 }

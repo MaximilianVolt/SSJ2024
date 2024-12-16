@@ -8,7 +8,7 @@
     "TileSerialiseData":[],
   },
   "name":"ts_forest_2",
-  "out_columns":18,
+  "out_columns":21,
   "out_tilehborder":2,
   "out_tilevborder":2,
   "parent":{
@@ -34,5 +34,5 @@
   "tileWidth":25,
   "tilexoff":0,
   "tileyoff":0,
-  "tile_count":310,
+  "tile_count":460,
 }

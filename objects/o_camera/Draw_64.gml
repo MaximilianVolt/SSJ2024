@@ -1,9 +1,3 @@
-var sprites = {
-	rm_house: s_house_overlay,
-};
-
-var sprite = sprites[$ room_get_name(room)];
-
 if (!sprite)
 	exit;
 

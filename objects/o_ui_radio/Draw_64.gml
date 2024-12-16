@@ -1,0 +1,35 @@
+draw_sprite_ext(
+	s_radio,
+	image_index,
+	x,
+	y,
+	scale,
+	scale,
+	image_angle,
+	image_blend,
+	image_alpha
+);
+
+draw_sprite_ext(
+	s_radio_wheel,
+	image_index,
+	x,
+	y,
+	wheel_scale,
+	wheel_scale,
+	wheel_rotation,
+	wheel_blend,
+	image_alpha
+);
+
+draw_sprite_ext(
+	s_radio_arrow,
+	image_index,
+	mx,
+	my,
+	arrow_scale,
+	arrow_scale,
+	arrow_rotation,
+	image_blend,
+	image_alpha
+);

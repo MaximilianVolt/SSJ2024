@@ -10,8 +10,8 @@ timesource2 = time_source_create(
 	time_source_units_seconds,
 	function() {
 		event_handler = undefined;
-		instance_destroy(o_newspaper);
-		transition_begin(rm_forest, sq_fadeout, sq_fadein, 2, 2, .3, .3);
+		instance_destroy(o_ui_newspaper);
+		transition_begin(rm_forest, sq_fadeout, sq_fadein,,, 2, 2, .3, .3);
 	}
 );
 
@@ -45,7 +45,7 @@ timesource = time_source_create(
 			}
 
 			var progress = (time2 - time_source_get_time_remaining(timesource2)) / time2;
-			o_newspaper.image_alpha = 1 - progress;
+			o_ui_newspaper.image_alpha = 1 - progress;
 		};
 	}
 );
@@ -58,7 +58,7 @@ instance_create_layer(
 	"Instances",
 	o_text_menu,
 	{
-		text: $"Cosinix + Maximilian Volt.\nGMI - Secret Santa Jam 2024\n\n{ansi_char(0x7f)}",
+		text: $"GMI - Secret Santa Jam 2024\n\n{ansi_char(0x7f)}",
 		image_xscale: 4.5,
 		image_yscale: 4.5,
 		text_speed: .35,
@@ -71,7 +71,7 @@ instance_create_layer(
 	0,
 	0,
 	"Instances",
-	o_newspaper,
+	o_ui_newspaper,
 	{
 		image_alpha: 0,
 		sprite: s_newspaper,
@@ -86,7 +86,7 @@ event_handler = function()
 	var progress = (time - time_source_get_time_remaining(timesource)) / time;
 
 	audio_sound_gain(snd, progress, 0);
-	o_newspaper.image_alpha = progress;
+	o_ui_newspaper.image_alpha = progress;
 
 	if (o_controller.inputs & o_controller.input_mask)
 	{

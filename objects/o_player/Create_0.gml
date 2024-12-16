@@ -1,12 +1,15 @@
 player_data = GAME.data.entities.player;
 inputs = o_controller.inputs;
-mask_index = s_collider;
+mask_index = s_collider_small;
 
-motion = player_get_motion(0);
+x = global.teleport.x;
+y = global.teleport.y;
+
+motion = player_get_motion(1 << INPUT_FLAGS.KEY_DOWN);
 
 instance_create_layer(x, y, "Managers", o_ui_player);
 instance_create_layer(x, y, "Managers", o_camera, {
-	target: o_player
+	target: o_player,
 });
 
 time_source_start(global.time_timesource);
@@ -17,7 +20,7 @@ stats = {
 	tiles: 1
 };
 
-dir_previous = 0;
+dir_previous = 3;
 
 /// State machine
 
@@ -41,7 +44,7 @@ state_idle = function()
 
 	if (game_action(inputs, INPUT_FLAGS.KEY_CLOCK))
 	{
-		instance_create_layer(x, y, "Instances", o_watch);
+		instance_create_layer(x, y, "Instances", o_ui_watch);
 		return state_interact();
 	}
 
@@ -93,3 +96,5 @@ state_interact = function()
 
 state = state_idle;
 state_current = state;
+
+sound = noone;

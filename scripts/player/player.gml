@@ -1,19 +1,8 @@
 #macro PLAYER_INTERACTION_RANGE 16
 
-global.time = 0;
-global.mhp = 3600 * 4;
-global.hp = global.mhp + 1000;
-global.time_max = 3600 * 10;
+randomize();
 
-global.time_timesource = time_source_create(
-	time_source_global,
-	1,
-	time_source_units_seconds,
-	function() {
-		time_source_start(global.time_timesource);
-		global.time++;
-	}
-);
+game_reset_data();
 
 
 
@@ -64,16 +53,16 @@ function player_collide(entity, xspd, yspd, any = true)
  * 
  */
 
-function player_can_interact(item, distance = PLAYER_INTERACTION_RANGE, range = 45)
+function player_can_interact(item, mouse_distanceance = PLAYER_INTERACTION_RANGE, range = 45)
 {
   if (!item)
     return false;
 
   var dir = point_direction(x, y, item.x, item.y)
-	  , dist = distance_to_point(item.x, item.y)
+	  , mouse_distance = mouse_distanceance_to_point(item.x, item.y)
 	;
 
 	return in_range_difference(motion.direction, dir, range)
-    && dist <= distance
+    && mouse_distance <= mouse_distanceance
 	;
 }

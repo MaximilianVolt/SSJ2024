@@ -29,4 +29,15 @@ bar_border = circular_bar_create_border_bar(bar, bar_border_width, c_black);
 circular_bar_add_divisors(bar, [circular_bar_create_divisor(135, 180)]);
 bar.start_angle -= 4.43;
 
-ui_bar = advanced_circular_bar_create(bar_x, bar_y, [bar_border, bar]);
+bg_bar = circular_bar_clone(bar, c_black, .6);
+bg_bar.radius = bar_radius - bar_width - bar_border_width + 3;
+bg_bar.width = bg_bar.radius;
+bg_bar.start_angle = 200;
+bg_bar.end_angle = 430;
+bg_bar.edge_type_start = 20;
+bg_bar.edge_type_final = 20;
+bg_bar.divisors = [];
+
+ui_bar = advanced_circular_bar_create(bar_x, bar_y, [bg_bar, bar_border, bar]);
+
+bar.value = 0;

@@ -10,4 +10,8 @@ state = state();
 
 
 
-global.hp--;
+if (!global.hp--)
+{
+	instance_destroy(o_interactable);
+	game_over();
+}

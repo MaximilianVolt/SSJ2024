@@ -1,11 +1,9 @@
-randomize();
-
 // Game database
 
 data = {
 	entities: {
 		player: {
-			spd_run: 12.5,
+			spd_run: 3,
 		},
 	},
 	assets: {
@@ -76,7 +74,18 @@ controls = {
 	}
 };
 
+if (!layer_exists("Managers"))
+	layer_create(8000, "Managers");
+
 instance_create_layer(x, y, "Managers", o_controller);
+
+if (!global.world_generated)
+	game_generate_forest_room();
+
+if (room == rm_forest)
+	game_load_forest_room();
+
 input_mode = INPUT_MODE_FLAGS.UI;
 
 draw_set_font(data.assets.ui.font);
+
