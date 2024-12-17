@@ -134,7 +134,7 @@ function game_generate_forest_room()
 		}
 		until (point_distance(inst_x, inst_y, house_x + 300, house_y - 150) > range);
 
-		var size_chances = [300, 180, 90, 1];
+		var size_chances = [1200, 720, 360, 1];
 		var sprites = [
 			[s_pole, s_bush, s_rock_2, s_rock_3],
 			[s_tree],
@@ -224,8 +224,8 @@ function game_load_forest_room()
 function game_reset_data()
 {
 	global.time = 0;
-	global.mhp = 36 * 4;
-	global.hp = global.mhp + 60 * 1;
+	global.mhp = 3600 * 4;
+	global.hp = global.mhp + 60 * 15;
 	global.time_max = 12 * 60;
 	global.fire_under_attack = false;
 	global.radio_frequency_middle = 75;
