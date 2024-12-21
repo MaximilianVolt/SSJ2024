@@ -1,0 +1,1 @@
+draw_sprite(s_house, global.roof_is_damaged, x, y);

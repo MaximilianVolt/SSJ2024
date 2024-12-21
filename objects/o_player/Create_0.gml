@@ -2,6 +2,8 @@ player_data = GAME.data.entities.player;
 inputs = o_controller.inputs;
 mask_index = s_collider_small;
 
+
+
 x = global.teleport.x;
 y = global.teleport.y;
 
@@ -13,12 +15,6 @@ instance_create_layer(x, y, "Managers", o_camera, {
 });
 
 time_source_start(global.time_timesource);
-
-stats = {
-	wood: 12,
-	locks: 0,
-	tiles: 1
-};
 
 dir_previous = 3;
 
@@ -34,13 +30,6 @@ state_idle = function()
 {
 	state_string = nameof(state_idle);
 	state_current = state_idle;
-
-	if (
-		game_action(inputs, INPUT_FLAGS.KEY_INTERACT)
-		&& player_can_interact()
-	) {
-		return state_interact();
-	}
 
 	if (game_action(inputs, INPUT_FLAGS.KEY_CLOCK))
 	{

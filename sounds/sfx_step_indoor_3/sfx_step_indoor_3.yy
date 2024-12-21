@@ -12,8 +12,8 @@
   "duration":0.492792,
   "name":"sfx_step_indoor_3",
   "parent":{
-    "name":"SFX",
-    "path":"folders/Suoni/SFX.yy",
+    "name":"Game sounds",
+    "path":"folders/Suoni/SFX/Game sounds.yy",
   },
   "preload":false,
   "resourceType":"GMSound",

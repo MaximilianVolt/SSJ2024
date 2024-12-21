@@ -1,0 +1,1 @@
+draw_sprite_ext(sprite_index, stage_index * frames_per_animation + image_index % 4, x, y, image_xscale, image_yscale, image_angle, image_blend, image_alpha);

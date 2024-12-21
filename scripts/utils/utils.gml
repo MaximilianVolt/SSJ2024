@@ -22,11 +22,11 @@ function game_keyboard_check(keys, chk_fn = keyboard_check)
  * @returns {Real}
  */
 
-function game_get_inputs(controls = GAME.controls)
+function game_get_inputs(controls = o_controller.controls)
 {
   var keys = variable_struct_get_names(controls);
   var key_count = array_length(keys);
-  var bitfield = 1 << GAME.input_mode + key_count;
+  var bitfield = 1 << o_controller.input_mode + key_count;
 
   for (var i = 0; i < key_count; ++i)
     with (controls[$ keys[@ i]])
@@ -132,9 +132,11 @@ function game_generate_forest_room()
 			inst_x = irandom(5000);
 			inst_y = irandom(5000);
 		}
-		until (point_distance(inst_x, inst_y, house_x + 300, house_y - 150) > range);
+		until (
+      point_distance(inst_x, inst_y, house_x + 300, house_y - 150) > range
+    );
 
-		var size_chances = [1200, 720, 360, 1];
+		var size_chances = [1500, 750, 500, 1];
 		var sprites = [
 			[s_pole, s_bush, s_rock_2, s_rock_3],
 			[s_tree],
@@ -187,10 +189,20 @@ function game_load_forest_room()
 
 	instance_create_layer(house_x, house_y, layer_world, o_house);
 	instance_create_layer(woodshed_x, woodshed_y, layer_world, o_woodshed);
-	
-	instance_create_layer(house_x + 50, house_y, layer_colliders, o_teleporter);
+
+	// To all the programmers out there, sorry it's hardcoded, I had no time.
+
+	instance_create_layer(house_x + 50, house_y, layer_colliders, o_teleporter, {
+		teleport_room: rm_house,
+		teleport_x: 260,
+		teleport_y: 550,
+    image_yscale: .25
+	});
 	instance_create_layer(woodshed_x + 25, woodshed_y, layer_colliders, o_teleporter, {
-		image_xscale: 1
+		teleport_room: rm_woodshed,
+		teleport_x: 410,
+		teleport_y: 425,
+    image_yscale: .25
 	});
 
 	array_foreach(global.forest_data_objects, function(obj) {
@@ -206,12 +218,14 @@ function game_load_forest_room()
  
  function game_over()
  {
+  if (instance_exists(o_ui_radio) && audio_is_playing(o_ui_radio.radio_transmission))
+    audio_stop_sound(o_ui_radio.radio_transmission);
+
 	 global.world_generated = false;
 	 o_player.state = o_player.state_interact;
-	 time_source_destroy(global.time_timesource);
-	 transition_begin(rm_intro_2, sq_fadeout, sq_fadein, function() {
+	 time_source_stop(global.time_timesource);
+	 transition_begin(rm_gameover, sq_fadeout, sq_fadein, function() {
 		 game_reset_data();
-		 audio_stop_all();
 	 },, 4, 4, .1, .1);
  }
  
@@ -227,13 +241,17 @@ function game_reset_data()
 	global.mhp = 3600 * 4;
 	global.hp = global.mhp + 60 * 15;
 	global.time_max = 12 * 60;
+  global.time_night = 2 * 60;
+  global.is_night = false;
 	global.fire_under_attack = false;
+  global.fire_damage_base = 1;
+  global.fire_damage = global.fire_damage_base;
 	global.radio_frequency_middle = 75;
 	global.radio_frequency_range = 50;
 	global.radio_frequency = global.radio_frequency_middle;
 	global.radio_neutralizer_frequency = irandom_range(
-		global.radio_frequency_middle - global.radio_frequency_range,
-		global.radio_frequency_middle + global.radio_frequency_range,
+		global.radio_frequency_middle - global.radio_frequency_range / 2,
+		global.radio_frequency_middle + global.radio_frequency_range / 2,
 	);
 
 	global.world_generated = false;
@@ -245,10 +263,112 @@ function game_reset_data()
 		time_source_global,
 		1,
 		time_source_units_seconds,
-		function() {
-			global.time++;
+		function()
+    {
+			if (global.time++ > global.time_night)
+      {
+        switch (room)
+        {
+          case rm_forest:
+            audio_swap_sound(bgs_snowstorm, 120, 600, true);
+
+            if (!global.is_night)
+              sprite_swap_asset(s_snow_overlay, 60, 300, true);
+          break;
+          
+          case rm_house:
+            if (global.window_is_open || global.roof_is_damaged)
+              sprite_swap_asset(s_snow_overlay, 60, 300, true);
+            else
+              sprite_swap_asset(s_house_overlay, 60, 300, true);
+          case rm_woodshed:
+            audio_swap_sound(
+              (global.window_is_open || global.roof_is_damaged)  
+                ? bgs_snowstorm
+                : bgs_wind_indoor
+              ,
+              120,
+              600,
+              true
+            );
+          break;
+        }
+
+        global.is_night = true;
+      }
 		},
 		[],
 		-1
 	);
+
+  global.radio_tracks_played = 0;
+  global.radio_has_to_play = true;
+  global.timesource_radio_silence = time_source_create(
+    time_source_global,
+    20,
+    time_source_units_seconds,
+    radio_reset
+  );
+
+  global.items = [
+    3,
+    1,
+    1
+  ];
+
+  global.window_is_locked = false;
+  global.window_is_open = false;
+  global.roof_is_damaged = false;
+  global.drenneth = 0;
+  global.ash = 0;
+  global.tile_thrown = false;
 }
+
+
+
+function radio_reset()
+{
+  global.radio_has_to_play = true;
+}
+
+
+
+/**
+ * 
+ */
+
+function audio_swap_sound(target_asset, fadeout_time, fadein_time, allow_overlap = false)
+{
+  with (o_snd_manager)
+  {
+    snd_target_asset = target_asset;
+    snd_fadeout_time = fadeout_time;
+    snd_target_fadein_time = fadein_time;
+    snd_allow_overlap = allow_overlap;
+  }
+}
+
+
+
+/**
+ *
+ */
+
+function sprite_swap_asset(target_asset, fadeout_time, fadein_time, allow_animation = false)
+{
+  with (o_img_manager)
+  {
+    img_target_asset = target_asset;
+    img_fadeout_time = fadeout_time;
+    img_target_fadein_time = fadein_time;
+    img_allow_animation = allow_animation;
+  }
+}
+
+
+
+
+
+
+
+

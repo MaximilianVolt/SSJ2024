@@ -31,7 +31,7 @@ function in_range_strict(value, min_value, max_value)
 
 
 /**
- * Checks if a value is inside a range of a certain wheel_range_amplitudeitude.
+ * Checks if a value is inside a range of a certain amplitude.
  * @param {Real} value - The value to check. 
  * @param {Real} target - The value to compare. 
  * @param {Real} range - The range difference to consider. 
@@ -45,7 +45,7 @@ function in_range_difference(value, target, range)
 
 
 /**
- * Checks if a value is strictly inside a range of a certain wheel_range_amplitudeitude.
+ * Checks if a value is strictly inside a range of a certain amplitude.
  * @param {Real} value - The value to check. 
  * @param {Real} target - The value to compare. 
  * @param {Real} range - The range difference to consider. 

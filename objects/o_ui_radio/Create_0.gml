@@ -2,8 +2,6 @@
 
 event_inherited();
 
-
-
 // Positioning
 
 xx = view_get_wport(view_camera);
@@ -79,6 +77,9 @@ animation_out_timesource = time_source_create(
 	animation_time / 2,
 	time_source_units_seconds,
 	function() {
+    audio_stop_sound(bgs_static);
+    audio_stop_sound(bgm_radio_loop_static);
+
 		instance_destroy();
 	}
 );
@@ -102,3 +103,33 @@ animation = function(timesource)
 
 timesource = animation_in_timesource;
 time_source_start(timesource);
+
+// Radio tracks
+
+radio_code = [];
+
+for (var f = global.radio_neutralizer_frequency; f; f = f div 10)
+  array_push(radio_code, asset_get_index($"sfx_code_{f mod 10}"));
+
+radio_tracks = [
+  [sfx_transmission_1],
+  [sfx_transmission_2],
+  array_concat(
+    [sfx_transmission_3_part_1], array_reverse(radio_code), [sfx_transmission_3_part_2]
+  ),
+  [sfx_transmission_4],
+  [sfx_transmission_5],
+  [sfx_transmission_6],
+  [sfx_transmission_7]
+];
+
+radio_music_volume = !global.is_night;
+
+audio_play_sound(bgs_static, 100, true, .0025);
+
+if (!global.is_night)
+  audio_play_sound(bgm_radio_loop_static, 100, true, radio_music_volume);
+
+radio_transmission_index = irandom(6);
+radio_transmission_part_index = 0;
+radio_transmission = radio_tracks[radio_transmission_index][radio_transmission_part_index];

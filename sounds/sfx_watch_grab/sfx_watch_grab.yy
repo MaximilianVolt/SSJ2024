@@ -12,8 +12,8 @@
   "duration":1.066667,
   "name":"sfx_watch_grab",
   "parent":{
-    "name":"SFX",
-    "path":"folders/Suoni/SFX.yy",
+    "name":"Game sounds",
+    "path":"folders/Suoni/SFX/Game sounds.yy",
   },
   "preload":false,
   "resourceType":"GMSound",

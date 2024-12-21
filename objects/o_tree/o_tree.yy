@@ -13,8 +13,8 @@
     "path":"folders/Oggetti/World/Colliders.yy",
   },
   "parentObjectId":{
-    "name":"o_depth",
-    "path":"objects/o_depth/o_depth.yy",
+    "name":"o_environment",
+    "path":"objects/o_environment/o_environment.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,
@@ -37,6 +37,9 @@
     "name":"s_tree",
     "path":"sprites/s_tree/s_tree.yy",
   },
-  "spriteMaskId":null,
+  "spriteMaskId":{
+    "name":"s_collider_medium",
+    "path":"sprites/s_collider_medium/s_collider_medium.yy",
+  },
   "visible":true,
 }

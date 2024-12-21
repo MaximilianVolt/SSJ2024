@@ -30,8 +30,8 @@
   "physicsShapePoints":[],
   "physicsStartAwake":true,
   "properties":[
-    {"$GMObjectProperty":"v1","%Name":"teleport_x","filters":[],"listItems":[],"multiselect":false,"name":"teleport_x","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
-    {"$GMObjectProperty":"v1","%Name":"teleport_y","filters":[],"listItems":[],"multiselect":false,"name":"teleport_y","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
+    {"$GMObjectProperty":"v1","%Name":"teleport_x","filters":[],"listItems":[],"multiselect":false,"name":"teleport_x","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":4,},
+    {"$GMObjectProperty":"v1","%Name":"teleport_y","filters":[],"listItems":[],"multiselect":false,"name":"teleport_y","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":4,},
     {"$GMObjectProperty":"v1","%Name":"teleport_room","filters":[],"listItems":[],"multiselect":false,"name":"teleport_room","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"","varType":5,},
   ],
   "resourceType":"GMObject",
@@ -42,5 +42,5 @@
     "path":"sprites/s_teleporter/s_teleporter.yy",
   },
   "spriteMaskId":null,
-  "visible":true,
+  "visible":false,
 }

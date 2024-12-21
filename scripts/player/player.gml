@@ -1,4 +1,4 @@
-#macro PLAYER_INTERACTION_RANGE 16
+#macro PLAYER_INTERACTION_RANGE 30
 
 randomize();
 
@@ -53,16 +53,16 @@ function player_collide(entity, xspd, yspd, any = true)
  * 
  */
 
-function player_can_interact(item, mouse_distanceance = PLAYER_INTERACTION_RANGE, range = 45)
+function player_can_interact(item, distance_max = PLAYER_INTERACTION_RANGE, range = 90)
 {
   if (!item)
     return false;
 
   var dir = point_direction(x, y, item.x, item.y)
-	  , mouse_distance = mouse_distanceance_to_point(item.x, item.y)
+	  , distance = distance_to_point(item.x, item.y)
 	;
 
-	return in_range_difference(motion.direction, dir, range)
-    && mouse_distance <= mouse_distanceance
+	return abs(angle_difference(dir_previous, dir)) < range
+    && distance <= distance_max
 	;
 }

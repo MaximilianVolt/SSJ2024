@@ -11,7 +11,7 @@ var _message = "message";
 
 var sound_asset;
 var _location = (room == rm_forest)
-	? "indoor"
+	? "outdoor"
 	: "indoor"
 ;
 
@@ -28,7 +28,7 @@ sound = audio_play_sound(
 	asset_get_index(sound_asset),
 	100,
 	false,
-	.05,
+	.25,
 	0,
 	random_range(.7, 1.1)
 );

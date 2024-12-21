@@ -19,7 +19,7 @@
   "height":250,
   "HTile":false,
   "layers":[
-    {"$GMImageLayer":"","%Name":"67ea5ffc-0699-4c48-a2bd-36d8d1ab0faf","blendMode":0,"displayName":"default","isLocked":false,"name":"67ea5ffc-0699-4c48-a2bd-36d8d1ab0faf","opacity":60.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
+    {"$GMImageLayer":"","%Name":"67ea5ffc-0699-4c48-a2bd-36d8d1ab0faf","blendMode":0,"displayName":"default","isLocked":false,"name":"67ea5ffc-0699-4c48-a2bd-36d8d1ab0faf","opacity":76.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
   "name":"s_house_overlay",
   "nineSlice":null,

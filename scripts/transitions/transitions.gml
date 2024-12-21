@@ -1,5 +1,5 @@
 global.transition_layer = "Transitions";
-global.transition_depth = -9999;
+global.transition_depth = -10001;
 global.transition_room = noone;
 global.transitioning = false;
 global.transition_callback = function() {};

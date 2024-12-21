@@ -8,6 +8,9 @@ bar_y = bar_radius + offset;
 bar_colors = [ #ff0000, #ff4000, #ff8000 ];
 bar_edge = 21;
 
+xx = view_get_wport(view_camera);
+yy = view_get_hport(view_camera);
+
 bar = circular_bar_create_from_center(
 	bar_x,
 	bar_y,
@@ -17,7 +20,7 @@ bar = circular_bar_create_from_center(
 	180,
 	1,
 	CIRCULAR_BAR_PRECISION_PRESETS.PLUS_ULTRA,
-	bar_colors,
+	c_black,
 	1,
 	bar_edge,
 	bar_edge,
@@ -41,3 +44,7 @@ bg_bar.divisors = [];
 ui_bar = advanced_circular_bar_create(bar_x, bar_y, [bg_bar, bar_border, bar]);
 
 bar.value = 0;
+bar.colors = bar_colors;
+depth = -12006;
+
+item_sprites = [s_wood, s_lock, s_tile];

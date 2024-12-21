@@ -1,3 +1,12 @@
+enum SIZES
+{
+  SMALL,
+  MEDIUM,
+  BIG,
+  SMARTINO,
+  COUNT
+}
+
 collision_masks = [
 	s_collider_small,
 	s_collider_medium,

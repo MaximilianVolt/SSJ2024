@@ -51,7 +51,7 @@ function circular_bar_create(x, y, radius, width = radius, start_angle = 90, end
  * @param {Real} radius - The bar's radius.
  * @param {Real} [width] - The bar's width.
  * @param {Real} [wheel_rotation_center] - The bar's middle angle, at 50% of the value.
- * @param {Real} [wheel_range_amplitudeitude] - The bar's wheel_range_amplitudeitude.
+ * @param {Real} [amplitude] - The bar's amplitude.
  * @param {Real} [value] - The value represented by the bar (0 <= x <= 1).
  * @param {Real} [precision] - The number of sectors to draw the bar.
  * @param {Constant.Color | Array<Constant.Color>} [colors] - The colors from 0% to 100% of the value.
@@ -64,9 +64,9 @@ function circular_bar_create(x, y, radius, width = radius, start_angle = 90, end
  * @returns {Struct.Circular_bar}
 */
 
-function circular_bar_create_from_center(x, y, radius, width = radius, wheel_rotation_center = 270, wheel_range_amplitudeitude = 360, value = 1, precision = CIRCULAR_BAR_PRECISION_PRESETS.MEDIUM, colors = [c_white, c_white], alphas = [1, 1], edge_type_start = 0, edge_type_final = 0, divisors = [], edges = [0], activation_override = true)
+function circular_bar_create_from_center(x, y, radius, width = radius, wheel_rotation_center = 270, amplitude = 360, value = 1, precision = CIRCULAR_BAR_PRECISION_PRESETS.MEDIUM, colors = [c_white, c_white], alphas = [1, 1], edge_type_start = 0, edge_type_final = 0, divisors = [], edges = [0], activation_override = true)
 {
-	var half_wheel_range_amplitudeitude = wheel_range_amplitudeitude / 2;
+	var half_wheel_range_amplitudeitude = amplitude / 2;
 	return new Circular_bar(x, y, radius, width, wheel_rotation_center - half_wheel_range_amplitudeitude, wheel_rotation_center + half_wheel_range_amplitudeitude, value, precision, colors, alphas, edge_type_start, edge_type_final, divisors, edges, activation_override);
 }
 
@@ -92,13 +92,13 @@ function circular_bar_create_border_bar(target_bar, border_width, colors = targe
 /**
  * Creates a bar's divisor.
  * @param {Real} position - The angle of the divisor's bisector.
- * @param {Real} wheel_range_amplitudeitude - The wheel_range_amplitudeitude of the divisor.
+ * @param {Real} amplitude - The amplitude of the divisor.
  * @returns {Struct}
 */
 
-function circular_bar_create_divisor(position, wheel_range_amplitudeitude)
+function circular_bar_create_divisor(position, amplitude)
 {
-	return Circular_bar.__create_divisor(position, wheel_range_amplitudeitude);
+	return Circular_bar.__create_divisor(position, amplitude);
 }
 
 
@@ -896,9 +896,7 @@ function Circular_bar(x, y, radius, width, start_angle, end_angle, value, precis
 	self.value = value;
 	self.precision = precision;
 	self.colors = is_array(colors) ? colors : [colors];
-	self.color = __get_color();
 	self.alphas = is_array(alphas) ? alphas : [alphas];
-	self.alpha = __get_alpha();
 	self.start_angle = start_angle;
 	self.end_angle = end_angle;
 	self.radius = radius;
@@ -1019,6 +1017,8 @@ function Circular_bar(x, y, radius, width, start_angle, end_angle, value, precis
 		return merge_color(colors[@ color_values[@ 0]], colors[@ color_values[@ 1]], color_values[@ 2]);
 	}
 
+    self.color = __get_color();
+
 
 
 	/**
@@ -1033,6 +1033,8 @@ function Circular_bar(x, y, radius, width, start_angle, end_angle, value, precis
 
 		return (alphas[@ alpha_values[@ 1]] - alphas[@ alpha_values[@ 0]]) * alpha_values[@ 2] + alphas[@ alpha_values[@ 0]];
 	}
+
+    self.alpha = __get_alpha();
 
 
 
@@ -1315,12 +1317,12 @@ function Circular_bar(x, y, radius, width, start_angle, end_angle, value, precis
 		var angle_diff = end_angle - start_angle;
 		var rotation_increment = sign(angle_diff);
 		var angle = angle_diff * value + start_angle;
-		var sector_wheel_range_amplitudeitude = abs(angle_diff) / precision;
+		var sector_amplitude = abs(angle_diff) / precision;
 		var sector_count = __get_sector(value) - (value < 1);
-		var outer_angle = (180 - sector_wheel_range_amplitudeitude) / 2;
-		var anchored_angle = start_angle + sector_wheel_range_amplitudeitude * rotation_increment * sector_count;
-		// var snap_dir_angle = anchored_angle + sector_wheel_range_amplitudeitude / 2 * sign(angle_diff);
-		var sector_angle_diff = abs(angle - anchored_angle) % sector_wheel_range_amplitudeitude;
+		var outer_angle = (180 - sector_amplitude) / 2;
+		var anchored_angle = start_angle + sector_amplitude * rotation_increment * sector_count;
+		// var snap_dir_angle = anchored_angle + sector_amplitude / 2 * sign(angle_diff);
+		var sector_angle_diff = abs(angle - anchored_angle) % sector_amplitude;
 		var inner_angle = 180 - outer_angle - sector_angle_diff;
 
 		return radius * dsin(outer_angle) / dsin(inner_angle);
@@ -1376,8 +1378,8 @@ function Circular_bar(x, y, radius, width, start_angle, end_angle, value, precis
 		for (var i = start_index; i < divisor_count; i++)
 		{
 			var position = angle_diff * i / divisor_count + start_angle;
-			var wheel_range_amplitudeitude = divisor_wheel_range_amplitudeitudes[@ (i - start_index) % wheel_range_amplitudeitudes_count];
-			array_push(divisors, __create_divisor(position, wheel_range_amplitudeitude));
+			var amplitude = divisor_wheel_range_amplitudeitudes[@ (i - start_index) % wheel_range_amplitudeitudes_count];
+			array_push(divisors, __create_divisor(position, amplitude));
 		}
 
 		__update(true);
@@ -1387,17 +1389,17 @@ function Circular_bar(x, y, radius, width, start_angle, end_angle, value, precis
 
 	/**
 	 * @param {Real} position
-	 * @param {Real} wheel_range_amplitudeitude
+	 * @param {Real} amplitude
 	 * @returns {Struct}
 	*/
 
-	static __create_divisor = function(position, wheel_range_amplitudeitude)
+	static __create_divisor = function(position, amplitude)
 	{
-		var half_wheel_range_amplitudeitude = wheel_range_amplitudeitude / 2;
+		var half_wheel_range_amplitudeitude = amplitude / 2;
 
 		return {
 			position,
-			wheel_range_amplitudeitude,
+			amplitude,
 			edge_angles: [
 				position - half_wheel_range_amplitudeitude,
 				position + half_wheel_range_amplitudeitude
@@ -1441,7 +1443,7 @@ function Circular_bar(x, y, radius, width, start_angle, end_angle, value, precis
 		var len = radius * 1.5;
 		var position = divisor.position;
 		var angles = divisor.edge_angles;
-		var variation = (divisor.wheel_range_amplitudeitude >= 180) * 90;
+		var variation = (divisor.amplitude >= 180) * 90;
 
 		var t1x1 = center + lengthdir_x(len, angles[@ 0]);
 		var t1y1 = center + lengthdir_y(len, angles[@ 0]);
@@ -1538,7 +1540,7 @@ function Circular_bar(x, y, radius, width, start_angle, end_angle, value, precis
 		if (!edge)
 			return;
 
-		[
+		var edge_selector = [
 			function(center_x, center_y, radius, width, angle) {__round_edge(center_x, center_y, radius, width, angle)},
 			function(center_x, center_y, radius, width, angle, dir, ext) {__chevron_edge(center_x, center_y, radius, width, angle, dir, ext)},
 			function(center_x, center_y, radius, width, angle, dir, ext) {__rectangle_edge(center_x, center_y, radius, width, angle, dir, ext)},
@@ -1560,7 +1562,9 @@ function Circular_bar(x, y, radius, width, start_angle, end_angle, value, precis
 			function(center_x, center_y, radius, width, angle, dir, ext) {__rounded_diamond_edge(center_x, center_y, radius, width, angle, dir, ext, CIRCULAR_BAR_ANCHORS.TOP)},
 			function(center_x, center_y, radius, width, angle, dir, ext) {__rounded_diamond_edge(center_x, center_y, radius, width, angle, dir, ext, CIRCULAR_BAR_ANCHORS.CENTER)},
 			function(center_x, center_y, radius, width, angle, dir, ext) {__rounded_diamond_edge(center_x, center_y, radius, width, angle, dir, ext, CIRCULAR_BAR_ANCHORS.BOTTOM)}
-		][@ edge - 1](center_x, center_y, radius, width, placement, dir, ext);
+		];
+        
+        edge_selector[@ edge - 1](center_x, center_y, radius, width, placement, dir, ext);
 	}
 	#endregion
 

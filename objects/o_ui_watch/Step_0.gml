@@ -4,6 +4,8 @@ if (
 		|| game_action(o_controller.inputs, INPUT_FLAGS.KEY_INTERACT)
 	)
 	&& time_source_get_state(animation_out_timesource) != time_source_state_active
+  || global.hp <= 0
+  || global.time >= global.time_max
 ) {
 	// "Out" animation values
 
@@ -23,8 +25,6 @@ if (
 	o_player.state = o_player.state_idle;
 
 	// Stop sounds
-
-	audio_stop_sound(sound);
 }
 
 animation(timesource);

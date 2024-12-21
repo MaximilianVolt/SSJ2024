@@ -12,5 +12,6 @@ var _y = clamp(y - h / 2, 0, room_height - h);
 
 camera_set_view_pos(view_camera[0], _x, _y);
 
+instance_deactivate_object(o_item);
 instance_deactivate_object(o_environment);
-instance_activate_region(_x, _y, w * 3, h * 3, true);
+instance_activate_region(_x - 100, _y - 100, w * 2, h * 2, true);

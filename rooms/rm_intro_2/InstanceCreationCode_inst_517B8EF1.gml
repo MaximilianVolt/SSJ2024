@@ -54,18 +54,16 @@ timesource = time_source_create(
 
 instance_create_layer(
 	xx / 2,
-	yy / 2,
+	yy / 2 - 120,
 	"Instances",
 	o_text_menu,
 	{
-		text: $"GMI - Secret Santa Jam 2024\n\n{ansi_char(0x7f)}",
+		text: $"GMI - Secret Santa Jam 2024\n\nA LIGHT BEFORE CHRISTMAS\n\n{ansi_char(0x7f)}",
 		image_xscale: 4.5,
 		image_yscale: 4.5,
 		text_speed: .35,
 	}
 );
-
-
 
 instance_create_layer(
 	0,
@@ -79,17 +77,15 @@ instance_create_layer(
 	}
 );
 
-snd = audio_play_sound(bgs_forest, 100, true, 0);
-
 event_handler = function()
 {
 	var progress = (time - time_source_get_time_remaining(timesource)) / time;
 
-	audio_sound_gain(snd, progress, 0);
 	o_ui_newspaper.image_alpha = progress;
 
 	if (o_controller.inputs & o_controller.input_mask)
 	{
+    audio_swap_sound(bgs_forest, 120, 120, true);
 		instance_destroy(o_text_menu);
 		
 		if (time_source_get_state(timesource) != time_source_state_active)
