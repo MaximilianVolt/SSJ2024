@@ -65,13 +65,15 @@ draw_set_halign(fa_left);
 if (room != rm_forest)
   exit;
 
+var x_off = 63;
+
 var house_distance_ratio = point_distance(
-  o_player.x, o_player.y, global.house_coords.x, global.house_coords.y
+  o_player.x, o_player.y, global.house_coords.x + x_off, global.house_coords.y
 ) / 50;
 
 var arrow_distance = 5;
 scale = math_dual_proportion(house_distance_ratio, 50, 0, 4, 1);
-var arrow_angle = point_direction(o_player.x, o_player.y, global.house_coords.x, global.house_coords.y);
+var arrow_angle = point_direction(o_player.x, o_player.y, global.house_coords.x + x_off, global.house_coords.y);
 
 if (o_player.state_current != o_player.state_interact)
   draw_sprite_ext(

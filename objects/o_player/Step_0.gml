@@ -27,8 +27,8 @@ if (global.time >= global.time_max)
   
   if (!instance_exists(o_text_menu))
   {
-    instance_create_layer(ww / 2, hh / 2 - 25, "Instances", o_text_menu, {
-      text: "You won,\n8allman!",
+    instance_create_layer(ww / 2, hh / 2, "Instances", o_text_menu, {
+      text: "You won!",
       image_xscale: 8,
       image_yscale: 8,
       text_speed: .2,

@@ -151,7 +151,7 @@ if (!audio_is_playing(radio_transmission))
   ) {
     radio_transmission = radio_tracks[radio_transmission_index][radio_transmission_part_index];
 
-    audio_play_sound(radio_transmission, 100, false, .3);
+    audio_play_sound(radio_transmission, 100, false, .65);
   
     if (++radio_transmission_part_index == transmission_part_count)
     {
@@ -162,7 +162,7 @@ if (!audio_is_playing(radio_transmission))
   else if (
     time_source_get_state(global.timesource_radio_silence) != time_source_state_active
   ) {
-    time_source_reconfigure(global.timesource_radio_silence, irandom_range(8, 15), time_source_units_seconds, radio_reset);
+    time_source_reconfigure(global.timesource_radio_silence, irandom_range(6, 12), time_source_units_seconds, radio_reset);
     time_source_start(global.timesource_radio_silence);
     radio_transmission_index = irandom(6);
   }

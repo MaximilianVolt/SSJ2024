@@ -18,22 +18,8 @@ draw = function()
     
     if (_x == _tx && _y == _ty)
     {
-      do
-      {
-        data.drenneth_target_x = irandom(room_width);
-        data.drenneth_target_y = irandom(room_height);
-      }
-      until (
-        !collision_line(
-          _x,
-          _y,
-          _tx,
-          _ty,
-          o_house,
-          false,
-          true
-        )
-      );
+      data.drenneth_target_x = irandom(room_width);
+      data.drenneth_target_y = irandom(room_height);
     }
 
     var dir = (_ty > _y) ? 3 : 1; 
@@ -45,7 +31,7 @@ draw = function()
   
   sprite = s_drenneth_tiles;
   image_speed = 1 / sprite_get_info(sprite).frame_speed / 4;
-  
+
   if (global.drenneth == 2)
   {
     y = global.house_coords.y + 1;

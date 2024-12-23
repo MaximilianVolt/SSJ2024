@@ -5,7 +5,7 @@ enum ITEM_TYPES {
   COUNT
 }
 
-type_chances = [50, 1, 1];
+type_chances = [48, 1, 1];
 type_sprites = [s_wood, s_lock, s_tile];
 type_sounds = [sfx_wood_drop, sfx_lock, sfx_watch_grab];
 

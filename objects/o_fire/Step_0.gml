@@ -7,7 +7,7 @@ with (o_player)
     && game_action(inputs, INPUT_FLAGS.KEY_INTERACT)
     && global.items[ITEM_TYPES.WOOD]
   ) {
-    global.hp = min(global.hp + 60 * irandom_range(10, 15), global.mhp + 300);
+    global.hp = min(global.hp + 60 * irandom_range(8, 12), global.mhp + 450);
     audio_play_sound(sfx_wood_drop, 100, false, 1, 0, random_range(.8, 1.2));
     global.items[ITEM_TYPES.WOOD]--;
   }

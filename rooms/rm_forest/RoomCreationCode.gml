@@ -3,7 +3,7 @@ game_load_forest_room();
 audio_emitter_position(o_snd_manager.emitter, global.house_coords.x, global.house_coords.y, 0);
 audio_falloff_set_model(audio_falloff_linear_distance);
 
-var item_count = irandom_range(45, 60);
+var item_count = irandom_range(50, 62);
 var border_offset = 350;
 
 for (var i = 0; i < item_count; ++i)

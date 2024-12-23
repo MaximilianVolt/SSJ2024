@@ -12,14 +12,14 @@
   "edgeFiltering":false,
   "For3D":false,
   "frames":[
-    {"$GMSpriteFrame":"","%Name":"71e029d8-9307-4fe9-933e-32a382f7e68a","name":"71e029d8-9307-4fe9-933e-32a382f7e68a","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"","%Name":"25c14010-9916-4e39-85cf-4e107de366f0","name":"25c14010-9916-4e39-85cf-4e107de366f0","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":0,
   "gridY":0,
   "height":111,
   "HTile":false,
   "layers":[
-    {"$GMImageLayer":"","%Name":"6c070321-066e-45e0-9fab-bad7ee38a6d3","blendMode":0,"displayName":"default","isLocked":false,"name":"6c070321-066e-45e0-9fab-bad7ee38a6d3","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
+    {"$GMImageLayer":"","%Name":"2b93253c-c451-4183-b9cb-ac9f3bd9ef79","blendMode":0,"displayName":"default","isLocked":false,"name":"2b93253c-c451-4183-b9cb-ac9f3bd9ef79","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
   "name":"s_clock_face",
   "nineSlice":null,
@@ -59,7 +59,7 @@
     },
     "name":"s_clock_face",
     "playback":1,
-    "playbackSpeed":1.0,
+    "playbackSpeed":30.0,
     "playbackSpeedType":0,
     "resourceType":"GMSequence",
     "resourceVersion":"2.0",
@@ -69,8 +69,8 @@
     "tracks":[
       {"$GMSpriteFramesTrack":"","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"$KeyframeStore<SpriteFrameKeyframe>":"","Keyframes":[
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"71e029d8-9307-4fe9-933e-32a382f7e68a","path":"sprites/s_clock_face/s_clock_face.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"6833d563-4281-4b4e-909a-ff89694c9e59","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"25c14010-9916-4e39-85cf-4e107de366f0","path":"sprites/s_clock_face/s_clock_face.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"804a89ea-19e6-423f-875b-378042eff350","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange":null,

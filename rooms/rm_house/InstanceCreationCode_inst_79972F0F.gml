@@ -7,17 +7,17 @@ handler = function()
     if (global.window_is_open)
     {
       audio_play_sound(sfx_creaking, 100, false);
+      global.ash = 2;
     }
-    
-    if (global.items[ITEM_TYPES.LOCK] && !global.window_is_open)
+    else if (global.items[ITEM_TYPES.LOCK])
     {
       audio_play_sound(sfx_lock, 100, false, 1, 0, random_range(.8, 1.2));
       global.items[ITEM_TYPES.LOCK]--;
       global.window_is_locked = true;
+      global.ash = 0;
     }
-    
+
     global.window_is_open = false;
-    global.ash = 0;
   }
 
   audio_swap_sound(

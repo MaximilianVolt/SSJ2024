@@ -111,6 +111,13 @@ radio_code = [];
 for (var f = global.radio_neutralizer_frequency; f; f = f div 10)
   array_push(radio_code, asset_get_index($"sfx_code_{f mod 10}"));
 
+audio_play_sound(bgs_static, 100, true, .0025);
+
+radio_music_volume = !global.is_night;
+
+if (!global.is_night)
+  audio_play_sound(bgm_radio_loop_static, 100, true, radio_music_volume);
+
 radio_tracks = [
   [sfx_transmission_1],
   [sfx_transmission_2],
@@ -122,14 +129,8 @@ radio_tracks = [
   [sfx_transmission_6],
   [sfx_transmission_7]
 ];
+radio_tracks_chances = [1, 1, 4, 1, 1, 1, 1];
 
-radio_music_volume = !global.is_night;
-
-audio_play_sound(bgs_static, 100, true, .0025);
-
-if (!global.is_night)
-  audio_play_sound(bgm_radio_loop_static, 100, true, radio_music_volume);
-
-radio_transmission_index = irandom(6);
 radio_transmission_part_index = 0;
+radio_transmission_index = chance_weighted(radio_tracks_chances);
 radio_transmission = radio_tracks[radio_transmission_index][radio_transmission_part_index];
